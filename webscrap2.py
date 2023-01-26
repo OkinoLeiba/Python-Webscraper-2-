@@ -1,9 +1,9 @@
 #Import the modules
-import json, re
+import json, re, string
 from urllib import request, parse
 from html.parser import HTMLParser
 
-class MyHTMLParser(HTMLParser):
+class MyHTMLParser(HTMLParser) -> None:
     def handle_starttag(self, tag, attrs):
         print("Start tag:", tag)
         for attr in attrs:
@@ -32,7 +32,7 @@ class MyHTMLParser(HTMLParser):
 
 
 #Option 1: Search data from url request by parser
-def user_parser(url_data):
+def user_parser(url_data) -> None:
     """
     param = parse.urlencode(search_param = input("Input Search Parameters: "))
     param_url = data % param
@@ -70,7 +70,7 @@ def tokenize(str_data, url_data):
 
 
 #URL builder: user-defined header 
-def url_builder(input_url):
+def url_builder(input_url) -> None:
     url_builder = request.build_opener()
     #define and append header fields as needed
     url_builder.addheaders = ([("User-Agent", "Mozilla/5.0")])
@@ -91,7 +91,7 @@ def url_builder(input_url):
     #search(str_data)
     user_parser(url_data)
    
-    pass
+  
 
 
 
