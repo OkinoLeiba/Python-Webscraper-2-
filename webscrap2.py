@@ -1,38 +1,38 @@
-#Import the modules
-import json, re, string
+#import the modules
+import json, re
 from urllib import request, parse
-from html.parser import HTMLParser
 
-class MyHTMLParser(HTMLParser) -> None:
-    def handle_starttag(self, tag, attrs):
+
+class HTMLParser(HTMLParser):
+    from html.parser import HTMLParser
+    def handle_starttag(self, tag, attrs) -> None:
         print("Start tag:", tag)
         for attr in attrs:
             print("     attr:", attr)
 
-    def handle_endtag(self, tag):
+    def handle_endtag(self, tag) -> None:
         print("End tag  :", tag)
 
-    def handle_data(self, data):
         print("Data     :", data)
 
-    def handle_comment(self, data):
+    def handle_comment(self, data) -> None:
         print("Comment  :", data)
 
-    def handle_charref(self, name):
+    def handle_charref(self, name) -> None:
         if name.startswith('x'):
             c = chr(int(name[1:], 16))
         else:
             c = chr(int(name))
         print("Num ent  :", c)
 
-    def handle_decl(self, data):
+    def handle_decl(self, data) -> None:
         print("Decl     :", data)
 
 
 
 
 #Option 1: Search data from url request by parser
-def user_parser(url_data) -> None:
+def user_parser(data) -> None:
     """
     param = parse.urlencode(search_param = input("Input Search Parameters: "))
     param_url = data % param
@@ -43,18 +43,20 @@ def user_parser(url_data) -> None:
     #parse_data = HTMLParser.feed(url_data)
 
 
-    parser = MyHTMLParser()
-    parser.feed(data=url_data)
+    parser = HTMLParser()
+    #parser.feed(data=url_data)
+    parser.feed(data)
+    
 
 
 
-    def handle_data(self, url_data):
+    def handle_data(self, url_data) -> None:
         self.url_data = url_data
         print(re.findall(search_param, self.url_data))
            
 
 #Option 2: Search data from url request by REGEX
-def search(str_data):
+def search(str_data) -> None:
     param = input("Input Search Parameters: ")
     print(re.findall(param, str_data))
     print(re.findall("<"+param+">", str_data))     #(^[a-zA-Z0-9_ ]*$)</"+param+">", str_data))
@@ -64,8 +66,8 @@ def search(str_data):
 
     
 #Tokenize url data by start and end tag
-def tokenize(str_data, url_data):
-    token_specification = []
+def tokenize(str_data, url_data) -> List:
+    return token_specification = []
 
 
 
@@ -89,9 +91,9 @@ def url_builder(input_url) -> None:
         url_data = data.decode("utf-8")
 
     #search(str_data)
-    user_parser(url_data)
+    user_parser(data)
    
-  
+    
 
 
 
